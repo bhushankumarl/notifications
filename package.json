@@ -1,0 +1,20 @@
+{
+  "name": "zapier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Pavlo Sobchuk",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "node-trello": "^1.1.2",
+    "nodemon": "^1.11.0",
+    "restler": "^3.4.0",
+    "trello": "^0.7.0"
+  }
+}
