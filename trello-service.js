@@ -29,14 +29,20 @@ var filterMessage = function (slackModel) {
         var item = filter[i];
         if (slackModel.commentText.indexOf(item.key) !== -1) {
             slackSvc.sendToSlack(slackModel, item.channel, item.username);
+        } else {
+            console.log('slackModel.commentText ', slackModel.commentText)
+            console.log('item.key ', item.key)
+            console.log('Match failed.');
         }
     }
-
-    return;
 };
 
 var processChange = function (data) {
-    if (!data || !data.model || !data.action) return;
+    console.log('Inside processChange');
+    if (!data || !data.model || !data.action) {
+        console.log('Return due to lack of data or model or action');
+        return;
+    }
 
     var model = data.model;
     var action = data.action;
@@ -53,9 +59,12 @@ var processChange = function (data) {
     };
 
     //trello.get("/1/");
-
+    console.log('slackModel ready');
     if (slackModel.actionType === 'commentCard') {
+        console.log('Inside slackModel.actionType === commentCard');
         filterMessage(slackModel);
+    } else {
+        console.log('It is not commentCard');
     }
 }
 
