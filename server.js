@@ -37,7 +37,6 @@ app.get('/', function (req, res) {
 
 app.listen(process.env.PORT || conf.api.port, function () {
     console.log('Listening on port 3000...');
-
     setTimeout(function () {
         trelloSvc.getBoards(function (err, result) {
             if (err) {
@@ -48,6 +47,6 @@ app.listen(process.env.PORT || conf.api.port, function () {
             trelloSvc.createWebhooks(result, function (err, result) {
                 console.log('Result received');
             });
-        })
+        });
     }, 5000);
 });

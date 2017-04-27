@@ -25,15 +25,16 @@ var createWebhooks = function (result) {
 
 var filterMessage = function (slackModel) {
     var filter = conf.slack.filter;
+    console.log('slackModel.commentText ', slackModel.commentText)
     for (var i = 0; i < filter.length; i++) {
         var item = filter[i];
         if (slackModel.commentText.indexOf(item.key) !== -1) {
+            console.log('item.key ', item.key);
             slackSvc.sendToSlack(slackModel, item.channel, item.username);
-        } else {
-            console.log('slackModel.commentText ', slackModel.commentText)
-            console.log('item.key ', item.key)
-            console.log('Match failed.');
         }
+        /*else {
+         console.log('Match failed.');
+         }*/
     }
 };
 
