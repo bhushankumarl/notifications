@@ -6,11 +6,13 @@ var trello = new Trello(conf.TRELLO_API_KEY, conf.TRELLO_USER_TOKEN);
 var createWebhooks = function (result) {
     var boards = result;
     for (var i = 0; i < boards.length; i++) {
+        console.log("boards ", boards[i].id);
         var query = {
+            description: boards[i].name,
             callbackURL: conf.api.url + '/trello/webhook',
             idModel: boards[i].id
         };
-        console.log('createWebhooks query ', query);
+        //console.log('createWebhooks query ', query);
         trello.post('/1/webhooks', query, function (err, data) {
             if (err) {
                 console.log(err);
@@ -31,7 +33,7 @@ var filterMessage = function (slackModel) {
     }
 
     return;
-}
+};
 
 var processChange = function (data) {
     if (!data || !data.model || !data.action) return;
@@ -50,7 +52,7 @@ var processChange = function (data) {
         cardUrl: "https://trello.com/c/" + action.data.card.shortLink
     };
 
-    trello.get("/1/");
+    //trello.get("/1/");
 
     if (slackModel.actionType === 'commentCard') {
         filterMessage(slackModel);
