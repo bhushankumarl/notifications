@@ -26,10 +26,16 @@ app.get('/', function (req, res) {
             res.send(err);
         }
 
+        console.log('trelloSvc.getBoards result ', result);
+
         var messageString = '';
         for (var i = 0; i < result.length; i++) {
             messageString += 'Board name: <strong>' + result[i].name + '</strong> -- Board Id: <strong>' + result[i].id + '</strong><br /><br />';
         }
+
+        trelloSvc.createWebhooks(result, function (err, result) {
+            console.log('Result received');
+        });
 
         res.send(messageString);
     })
@@ -39,7 +45,4 @@ app.get('/', function (req, res) {
 app.listen(process.env.PORT || conf.api.port, function () {
     console.log('Listening on port 3000...');
 
-    trelloSvc.createWebhooks(function (err, result) {
-        console.log('Result received');
-    });
 });

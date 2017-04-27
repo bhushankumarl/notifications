@@ -3,14 +3,14 @@ var slackSvc = require('./slack-service');
 var Trello = require('node-trello');
 var trello = new Trello(conf.TRELLO_API_KEY, conf.TRELLO_USER_TOKEN);
 
-var createWebhooks = function () {
-    var boards = conf.boards;
+var createWebhooks = function (result) {
+    var boards = result;
     for (var i = 0; i < boards.length; i++) {
         var query = {
             callbackURL: conf.api.url + '/trello/webhook',
-            idModel: boards[i]
+            idModel: boards[i].id
         };
-
+        console.log('createWebhooks query ', query);
         trello.post('/1/webhooks', query, function (err, data) {
             if (err) {
                 console.log(err);
@@ -62,7 +62,7 @@ var getBoards = function (callback) {
         if (err) {
             console.log('Error!', err);
         }
-        console.log('getBoards result', result);
+        //console.log('getBoards result', result);
         var memberId = result.id;
 
         trello.get('/1/members/' + memberId + '/boards', callback);
