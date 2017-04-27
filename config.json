@@ -1,42 +1,52 @@
 {
-    "TRELLO_API_KEY": "2f038a581262ff2ad748d42cc86f7579",
-    "TRELLO_USER_TOKEN": "deaa857069a62565c784a36a0b15e0da7e8a807239cfe4ea3d42fec6c48e63e2",
-    "boards": [ "5788e686f619037bb5744497", "57e1ec02356510470f5e43fe", "578e5bb8740c5afcad18b4ac", "586ea734cbf3e931c2a06496", "58322e9db909b791c0fe081e", "57e37a863f3d5c099fadf816", "5788e6769cd22607c82b80c8" ],
-
-    "slack": {
-        "socialLink": "https://socialinkmedia.slack.com/team",
-
-        "filter": [
-            {
-                "key": "@blusteinsteven",
-                "username": "steven",
-                "channel": "https://hooks.slack.com/services/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"
-            },
-            {
-                "key": "@danielpesis",
-                "username": "dlpesis",
-                "channel": "https://hooks.slack.com/services/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"
-            },
-            {
-                "key": "@martinpesis",
-                "username": "mpesis",
-                "channel": "https://hooks.slack.com/services/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"
-            },
-            {
-                "key": "@jesseschor",
-                "username": "jesse",
-                "channel": "https://hooks.slack.com/services/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"
-            },
-            {
-                "key": "@evanherron",
-                "username": "evanherron",
-                "channel": "https://hooks.slack.com/services/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"
-            }
-        ]
-    },
-
-    "api": {
-        "url": "http://slack-trello-stage.herokuapp.com",
-        "port": 3000
-    }
+  "TRELLO_API_KEY": "2f038a581262ff2ad748d42cc86f7579",
+  "TRELLO_USER_TOKEN": "deaa857069a62565c784a36a0b15e0da7e8a807239cfe4ea3d42fec6c48e63e2",
+  "boards": [
+    "5788e686f619037bb5744497",
+    "57e1ec02356510470f5e43fe",
+    "578e5bb8740c5afcad18b4ac",
+    "586ea734cbf3e931c2a06496",
+    "58322e9db909b791c0fe081e",
+    "57e37a863f3d5c099fadf816",
+    "5788e6769cd22607c82b80c8"
+  ],
+  "slack": {
+    "socialLink": "https://socialinkmedia.slack.com/team",
+    "filter": [
+      {
+        "key": "@blusteinsteven",
+        "username": "steven",
+        "channel": "https://hooks.slack.com/services/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"
+      },
+      {
+        "key": "@danielpesis",
+        "username": "dlpesis",
+        "channel": "https://hooks.slack.com/services/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"
+      },
+      {
+        "key": "@martinpesis",
+        "username": "mpesis",
+        "channel": "https://hooks.slack.com/services/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"
+      },
+      {
+        "key": "@jesseschor",
+        "username": "jesse",
+        "channel": "https://hooks.slack.com/services/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"
+      },
+      {
+        "key": "@evanherron",
+        "username": "evanherron",
+        "channel": "https://hooks.slack.com/services/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"
+      },
+      {
+        "key": "@bhushankumar",
+        "username": "bhushankumar",
+        "channel": "https://hooks.slack.com/services/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"
+      }
+    ]
+  },
+  "api": {
+    "url": "http://slack-trello-stage.herokuapp.com",
+    "port": 3000
+  }
 }

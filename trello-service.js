@@ -3,25 +3,29 @@ var slackSvc = require('./slack-service');
 var Trello = require('node-trello');
 var trello = new Trello(conf.TRELLO_API_KEY, conf.TRELLO_USER_TOKEN);
 
-var createWebhooks = function() {
+var createWebhooks = function () {
     var boards = conf.boards;
-    for(var i = 0; i < boards.length; i++) {
+    for (var i = 0; i < boards.length; i++) {
         var query = {
             callbackURL: conf.api.url + '/trello/webhook',
             idModel: boards[i]
         };
 
-        trello.post('/1/webhooks', query, function(err, data) {
-            if(err) console.log(err);
+        trello.post('/1/webhooks', query, function (err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(' trello.post Data ', data)
+            }
         });
     }
 };
 
-var filterMessage = function(slackModel) {
+var filterMessage = function (slackModel) {
     var filter = conf.slack.filter;
-    for(var i = 0; i < filter.length; i++) {
+    for (var i = 0; i < filter.length; i++) {
         var item = filter[i];
-        if(slackModel.commentText.indexOf(item.key) !== -1) {
+        if (slackModel.commentText.indexOf(item.key) !== -1) {
             slackSvc.sendToSlack(slackModel, item.channel, item.username);
         }
     }
@@ -29,8 +33,8 @@ var filterMessage = function(slackModel) {
     return;
 }
 
-var processChange = function(data) {
-    if(!data || !data.model || !data.action) return;
+var processChange = function (data) {
+    if (!data || !data.model || !data.action) return;
 
     var model = data.model;
     var action = data.action;
@@ -46,18 +50,20 @@ var processChange = function(data) {
         cardUrl: "https://trello.com/c/" + action.data.card.shortLink
     };
 
-    trello.get("/1/")
+    trello.get("/1/");
 
-    if(slackModel.actionType === 'commentCard') {
+    if (slackModel.actionType === 'commentCard') {
         filterMessage(slackModel);
     }
 }
 
-var getBoards = function(callback) {
-    trello.get("/1/tokens/" + conf.TRELLO_USER_TOKEN + "/member", function(err, result) {
-        if(err) console.log('Error!');
-
-        var memberId = result.id
+var getBoards = function (callback) {
+    trello.get("/1/tokens/" + conf.TRELLO_USER_TOKEN + "/member", function (err, result) {
+        if (err) {
+            console.log('Error!', err);
+        }
+        console.log('getBoards result', result);
+        var memberId = result.id;
 
         trello.get('/1/members/' + memberId + '/boards', callback);
     });
